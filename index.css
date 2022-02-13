@@ -1,15 +1,19 @@
 body {
+    --hue: 80;
     --lens-center-size: 40vmin;
     --lens-spread-size: 80vmin;
+    --lens-left: 75vw;
+    --lens-top: 85vh;
     --flare-height: 5vh;
     --flare-width: 50vw;
-    --hue: 180;
-    background: black;
+    /* background: black; */
+    background: url(startrek_wallpaper.jpg);
+    background-size: cover;
     display: grid;
-    place-items: center;
     height: 100vh;
     box-sizing: border-box;
     margin: 0;
+    overflow: hidden;
 }
 
 .lens-center {
@@ -17,8 +21,8 @@ body {
     width: var(--lens-center-size);
     height: var(--lens-center-size);
     border-radius: 100%;
-    /* background: radial-gradient(ellipse at top, #e66465, transparent), */
-            /* radial-gradient(ellipse at bottom, #4d9f0c, transparent); */
+    left: calc(var(--lens-left) - (var(--lens-center-size) / 2));
+    top: calc(var(--lens-top) - (var(--lens-center-size) / 2));
     background: radial-gradient(closest-side circle at center,
         hsla(var(--hue), 5%, 100%, 1) 0%, 
         hsla(var(--hue), 5%, 100%, 1) 15%, 
@@ -56,9 +60,10 @@ body {
         transparent 75%);
 }
 
-.left-flare {
-    left: calc(100% - var(--flare-width));
-    top: calc(50vh-(var(--flare-height)/2));
+.right-flare {
+    left: var(--lens-left);
+    width: calc(100vw - var(--lens-left));
+    top: calc(var(--lens-top) - (var(--flare-height)/2));
     background: radial-gradient(ellipse at center left,
         hsla(var(--hue), 20%, 90%, .8) 0%,
         hsla(var(--hue), 10%, 70%, .4) 30%,
@@ -66,9 +71,10 @@ body {
     filter: opacity(50%);
 }
 
-.right-flare {
+.left-flare {
     left: 0;
-    top: calc(50vh-(var(--flare-height)/2));
+    top: calc(var(--lens-top) - (var(--flare-height)/2));
+    width: var(--lens-left);
     background: radial-gradient(ellipse at center right,
         hsla(var(--hue), 20%, 90%, .8) 0%,
         hsla(var(--hue), 10%, 70%, .4) 30%,
@@ -78,7 +84,6 @@ body {
 
 .flare {
     position: absolute;
-    width: var(--flare-width);
     height: var(--flare-height);
 }
 
@@ -101,8 +106,8 @@ body {
         transparent 0deg,
         hsla(var(--hue), 10%, 70%, 0.3) 15deg,
         transparent 30deg);
-    left: 50%;
-    bottom: 50%;
+    left: var(--lens-left);
+    bottom: calc(100vh - var(--lens-top));
     filter: blur(5px);
 }
 
@@ -116,8 +121,8 @@ body {
         transparent 90deg);
     transform-origin: bottom left;
     transform: rotate(-30deg);
-    left: 50%;
-    bottom: 50%;
+    left: var(--lens-left);
+    bottom: calc(100vh - var(--lens-top));
 }
 .conic-3 {
     width: calc(var(--lens-center-size) * 3.1);
@@ -129,9 +134,9 @@ body {
         transparent 15deg);
     transform-origin: bottom left;
     transform: rotate(-45deg);
-    left: 50%;
     filter: blur(5px);
-    bottom: 50%;
+    left: var(--lens-left);
+    bottom: calc(100vh - var(--lens-top));
 }
 
 .circle-1 {
