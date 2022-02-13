@@ -1,0 +1,161 @@
+body {
+    --lens-center-size: 40vmin;
+    --lens-spread-size: 80vmin;
+    --flare-height: 5vh;
+    --flare-width: 50vw;
+    --hue: 180;
+    background: black;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.lens-center {
+    position: relative;
+    width: var(--lens-center-size);
+    height: var(--lens-center-size);
+    border-radius: 100%;
+    /* background: radial-gradient(ellipse at top, #e66465, transparent), */
+            /* radial-gradient(ellipse at bottom, #4d9f0c, transparent); */
+    background: radial-gradient(closest-side circle at center,
+        hsla(var(--hue), 5%, 100%, 1) 0%, 
+        hsla(var(--hue), 5%, 100%, 1) 15%, 
+        hsla(var(--hue), 10%, 70%, 0.7) 30%,
+        hsla(var(--hue), 0%, 50%, 0.3) 55%,
+        hsla(var(--hue), 0%, 10%, 0.05) 75%,
+        transparent 99%
+    );
+}
+.lens-center::before{
+    content: '';
+    display: block;
+    width: var(--lens-spread-size);
+    height: var(--lens-spread-size);
+    left: calc((var(--lens-spread-size) - var(--lens-center-size))/2 * -1);
+    top: calc((var(--lens-spread-size) - var(--lens-center-size))/2 * -1);
+    position: absolute;
+    border-radius: 100%;
+    background: radial-gradient(closest-side circle at center,
+        hsla(var(--hue), 15%, 70%, .15) 0%,
+        transparent 100%);
+}
+
+.lens-center::after {
+    content: '';
+    display: block;
+    width: 4vmin;
+    height: 4vmin;
+    left: 65%;
+    bottom: 25%;
+    position: absolute;
+    border-radius: 100%;
+    background: radial-gradient(closest-side circle at center,
+        hsla(var(--hue), 30%, 70%, .6) 0%,
+        transparent 75%);
+}
+
+.left-flare {
+    left: calc(100% - var(--flare-width));
+    top: calc(50vh-(var(--flare-height)/2));
+    background: radial-gradient(ellipse at center left,
+        hsla(var(--hue), 20%, 90%, .8) 0%,
+        hsla(var(--hue), 10%, 70%, .4) 30%,
+        transparent 75%);
+    filter: opacity(50%);
+}
+
+.right-flare {
+    left: 0;
+    top: calc(50vh-(var(--flare-height)/2));
+    background: radial-gradient(ellipse at center right,
+        hsla(var(--hue), 20%, 90%, .8) 0%,
+        hsla(var(--hue), 10%, 70%, .4) 30%,
+        transparent 75%);
+    filter: opacity(50%);
+}
+
+.flare {
+    position: absolute;
+    width: var(--flare-width);
+    height: var(--flare-height);
+}
+
+.spike-flare-1 {
+    background: radial-gradient(closest-side ellipse at 45% center,
+        hsla(var(--hue), 20%, 90%, .8) 0%,
+        hsla(var(--hue), 10%, 70%, .3) 30%,
+        transparent 95%);
+    left: 0%;
+    width: 100%;
+    top: 75vh; 
+    filter: blur(5px);
+}
+
+.conic-1 {
+    width: calc(var(--lens-center-size) * 1.6);
+    height: calc(var(--lens-center-size) * 1.6);
+    position: absolute;
+    background: conic-gradient(from 5deg at 0% 100%, 
+        transparent 0deg,
+        hsla(var(--hue), 10%, 70%, 0.3) 15deg,
+        transparent 30deg);
+    left: 50%;
+    bottom: 50%;
+    filter: blur(5px);
+}
+
+.conic-2 {
+    width: calc(var(--lens-center-size) * 3);
+    height: calc(var(--lens-center-size) * 3);
+    position: absolute;
+    background: conic-gradient(from -5deg at 0% 100%, 
+        transparent 0deg,
+        hsla(var(--hue), 10%, 70%, 0.3) 45deg,
+        transparent 90deg);
+    transform-origin: bottom left;
+    transform: rotate(-30deg);
+    left: 50%;
+    bottom: 50%;
+}
+.conic-3 {
+    width: calc(var(--lens-center-size) * 3.1);
+    height: calc(var(--lens-center-size) * 3.1);
+    position: absolute;
+    background: conic-gradient(from 5deg at 0% 100%, 
+        transparent 0deg,
+        hsla(var(--hue), 10%, 70%, 0.3) 7deg,
+        transparent 15deg);
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+    left: 50%;
+    filter: blur(5px);
+    bottom: 50%;
+}
+
+.circle-1 {
+    width: calc(var(--lens-center-size) * 0.7);
+    height: calc(var(--lens-center-size) * 0.7);
+    left: 65%;
+    top: 65%;
+    border-radius: 100%;
+    position: absolute;
+    background: radial-gradient(closest-side circle at center,
+        transparent 50%,
+        hsla(var(--hue), 10%, 70%, .4) 90%,
+        transparent 100%);
+    filter: blur(5px);
+}
+
+.circle-2 {
+    width: calc(var(--lens-center-size) * 0.4);
+    height: calc(var(--lens-center-size) * 0.4);
+    left: 62%;
+    top: 62%;
+    border-radius: 100%;
+    position: absolute;
+    background:  hsla(var(--hue), 10%, 60%, .4);
+    filter: blur(2px);
+}
+
